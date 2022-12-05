@@ -1,4 +1,4 @@
-import {StyleSheet, Image, ScrollView, Dimensions, ImageBackground} from 'react-native';
+import {StyleSheet, Image, ScrollView, Dimensions, ImageBackground, TouchableOpacity} from 'react-native';
 
 // @ts-ignore
 import colorful from "../assets/images/ColorFul.png"
@@ -18,6 +18,8 @@ import {CardBottom} from "../components/Card/CardBottom";
 import {Game} from "../components/Game/Game";
 // @ts-ignore
 import imageBackground from '../assets/images/imageBackground.png'
+import lockIcon from '../assets/images/lock-dark.png'
+
 
 
 const gameData = [
@@ -67,7 +69,21 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
               ))}
             </View>
           </View>
-          <ImageBackground source={imageBackground} style={styles.backgroundContainer}>
+          <ImageBackground  source={imageBackground} style={styles.backgroundContainer}  >
+            <View style={styles.backgroundContent}>
+              <View style={{flexDirection:'column',backgroundColor:'transparent'}}>
+                <Text style={styles.buttonText}>
+                  Get 5 EMBR
+                </Text>
+                <Text style={[styles.buttonText,{fontSize: 14}]}>
+                  Invite a friend
+                </Text>
+              </View>
+              <TouchableOpacity style={styles.buttonInvite}>
+                <Image source={lockIcon}/>
+                <Text style={styles.buttonInviteText}>Invite</Text>
+              </TouchableOpacity>
+            </View>
 
           </ImageBackground>
         </ScrollView>
@@ -83,7 +99,9 @@ const styles = StyleSheet.create({
   backgroundContainer:{
     width: '100%',
     height: 76,
-    marginTop: '5%'
+    marginTop: '5%',
+    borderRadius:600,
+    justifyContent:'center'
   },
   getButton:{
     backgroundColor: '#0B1A65',
@@ -131,4 +149,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   gameWrapper: {justifyContent: 'center', alignItems: 'center', borderRadius: 24},
+  buttonText:{
+    fontSize:18,
+    color: '#FFFFFF',
+    backgroundColor:'transparent',
+    fontWeight:'bold'
+  },
+  backgroundContent:{
+    marginHorizontal:24,
+   backgroundColor:'transparent',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center'
+
+  },
+  buttonInvite:{
+    backgroundColor:'#FFFFFF',
+    borderRadius:600,
+    height:33,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection:'row',
+    paddingHorizontal:16
+  },
+  buttonInviteText:{
+    color:'#0B1A65',
+    fontSize:14,
+    marginLeft:4
+  }
+
+
 });

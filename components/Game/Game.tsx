@@ -21,7 +21,7 @@ export const Game: React.FC<Props> = React.memo(({ title, text, img, isLastChild
                     <Text>{text}</Text>
                 </View>
             </View>
-            {id !== 3 ? <Button text="Get" type="apple"/> : <Button text="Get" type="play"/>}
+            {id !== 3 ? <Button text="Get" type="apple"/> : <Button text="Play" type="play"/>}
         </View>
     )
 })

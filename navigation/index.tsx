@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import {ColorSchemeName, Dimensions, Image, Pressable} from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -18,6 +18,12 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import homeIcon from '../assets/images/home-04.png';
+import rewardsIcon from '../assets/images/rewards.png';
+import globeIcon from '../assets/images/globe.png';
+import userCircleIcon from '../assets/images/user-circle.png';
+
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -56,6 +62,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
+
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
@@ -65,20 +72,55 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
+
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
+            title: 'Home',
             headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) =>
+              <Image
+              source={homeIcon}
+              color={color}
+          />
+
+
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Rewards"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Rewards',
+            tabBarIcon: ({ color }) =>
+                <Image
+                source={rewardsIcon}
+                color={color}
+            />
         }}
       />
+        <BottomTab.Screen
+            name="Games"
+            component={TabTwoScreen}
+            options={{
+                title: 'Games',
+                tabBarIcon: ({ color }) =>
+                    <Image
+                    source={globeIcon}
+                    color={color}
+                />
+        }}
+        />
+        <BottomTab.Screen
+            name="myVerse"
+            component={TabTwoScreen}
+            options={{
+                title: 'myVerse',
+                tabBarIcon: ({ color }) =>
+                    <Image
+                    source={userCircleIcon}
+                    color={color}
+                />
+        }}
+        />
     </BottomTab.Navigator>
   );
 }

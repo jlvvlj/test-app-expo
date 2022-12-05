@@ -17,6 +17,10 @@ export const Button: React.FC<Props> = React.memo(({ text, type = 'default' }) =
         if (type === 'apple' || type === 'primary') {
             return styles.textDark
         }
+        else if( type === 'play')
+        {
+            return styles.textPlay
+        }
         return {}
     }, [])
 
@@ -75,4 +79,7 @@ const styles = StyleSheet.create({
     textWhite: {color: '#fff'},
     textDark: {color: '#0B1A65'},
     text: {marginLeft: 5},
+    textPlay:{
+        paddingHorizontal:7
+    }
 })
