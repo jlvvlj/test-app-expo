@@ -8,9 +8,10 @@ interface Props {
     text: string;
     img: ImageSourcePropType;
     isLastChild?: boolean;
+    id: number
 }
 
-export const Game: React.FC<Props> = React.memo(({ title, text, img, isLastChild }) => {
+export const Game: React.FC<Props> = React.memo(({ title, text, img, isLastChild, id }) => {
     return (
         <View style={[styles.main, !isLastChild ? styles.borderBottom : {}]}>
             <View style={styles.content}>
@@ -20,7 +21,7 @@ export const Game: React.FC<Props> = React.memo(({ title, text, img, isLastChild
                     <Text>{text}</Text>
                 </View>
             </View>
-            <Button text="Get" type="apple" />
+            {id !== 3 ? <Button text="Get" type="apple"/> : <Button text="Get" type="play"/>}
         </View>
     )
 })

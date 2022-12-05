@@ -1,4 +1,4 @@
-import {StyleSheet, Image, ScrollView, Dimensions} from 'react-native';
+import {StyleSheet, Image, ScrollView, Dimensions, ImageBackground} from 'react-native';
 
 // @ts-ignore
 import colorful from "../assets/images/ColorFul.png"
@@ -16,13 +16,16 @@ import {Button} from "../components/Button/Button";
 import {Card} from "../components/Card/Card";
 import {CardBottom} from "../components/Card/CardBottom";
 import {Game} from "../components/Game/Game";
+// @ts-ignore
+import imageBackground from '../assets/images/imageBackground.png'
+
 
 const gameData = [
   {id: 1, title: 'Hyper Cards', text: 'Trade & Collect!', img: require('../assets/images/game1.png')},
-  {id: 2, title: 'Superhero Race!', text: 'Swap \'Em to Win the Race!', img: require('../assets/images/game1.png')},
-  {id: 3, title: 'Cargo Parking', text: 'Test your Parking Skills', img: require('../assets/images/game1.png')},
-  {id: 4, title: 'Raft Life', text: 'Can you survive Castaway?', img: require('../assets/images/game1.png')},
-  {id: 5, title: 'Slingshot Crash', text: 'Pull Back and Smash!!', img: require('../assets/images/game1.png')},
+  {id: 2, title: 'Superhero Race!', text: 'Swap \'Em to Win the Race!', img: require('../assets/images/game2.png')},
+  {id: 3, title: 'Cargo Parking', text: 'Test your Parking Skills', img: require('../assets/images/game3.png')},
+  {id: 4, title: 'Raft Life', text: 'Can you survive Castaway?', img: require('../assets/images/game4.png')},
+  {id: 5, title: 'Slingshot Crash', text: 'Pull Back and Smash!!', img: require('../assets/images/game5.png')},
 ]
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
@@ -60,10 +63,13 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
           <View style={styles.gameWrapper}>
             <View style={styles.gameContent}>
               {gameData.map(item => (
-                  <Game key={item.id} isLastChild={item.id === gameData.length} img={item.img} title={item.title} text={item.text} />
+                  <Game key={item.id} id={item.id} isLastChild={item.id === gameData.length} img={item.img} title={item.title} text={item.text} />
               ))}
             </View>
           </View>
+          <ImageBackground source={imageBackground} style={styles.backgroundContainer}>
+
+          </ImageBackground>
         </ScrollView>
       </SafeAreaView>
   );
@@ -73,6 +79,11 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     paddingHorizontal: 16,
+  },
+  backgroundContainer:{
+    width: '100%',
+    height: 76,
+    marginTop: '5%'
   },
   getButton:{
     backgroundColor: '#0B1A65',
