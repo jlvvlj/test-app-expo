@@ -36,7 +36,7 @@ export default function TabHomeScreen({ navigation }: RootTabScreenProps<'TabOne
         <ScrollView showsVerticalScrollIndicator={false}>
        <View style={[styles.headerContainer, styles.topContainer]}>
          <Image source={Logo}/>
-         <Button text="Create Account »" />
+         <Button text="Create Account »" onClick={()=>navigation.navigate('WelcomeScreen')}/>
        </View>
         <View style={styles.headerContainer}>
           <Text style={styles.headText}>Hot Rewards</Text>
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     marginLeft: '20%',
     marginTop: '2%'
   },
-  topContainer: { width: '85%'},
+  topContainer: { width: '69%'},
   headerContainer:{
     flexDirection: 'row',
     alignItems: 'center',

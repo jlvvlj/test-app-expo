@@ -10,9 +10,10 @@ export type ButtonType = 'default' | 'get' | 'apple' | 'primary' | 'play';
 interface Props {
     text: string;
     type?: ButtonType;
+    onClick:()=>(void);
 }
 
-export const Button: React.FC<Props> = React.memo(({ text, type = 'default' }) => {
+export const Button: React.FC<Props> = React.memo(({ text, type = 'default',onClick }) => {
     const renderStyleText = useMemo(() => {
         if (type === 'apple' || type === 'primary') {
             return styles.textDark
@@ -44,7 +45,9 @@ export const Button: React.FC<Props> = React.memo(({ text, type = 'default' }) =
         return lock
     }, [type])
   return (
-      <TouchableOpacity style={type === 'default' ? styles.headerButton : [styles.getButton, renderStylesButton]}>
+      <TouchableOpacity style={type === 'default' ? styles.headerButton : [styles.getButton, renderStylesButton]}
+      onPress={()=>onClick()}
+      >
           {type !== 'default' && type !== 'play' && <Image source={renderIcon}/>}
           <Text style={type !== 'default' ? [styles.text, styles.textWhite, renderStyleText] : styles.text}>{text}</Text>
       </TouchableOpacity>
