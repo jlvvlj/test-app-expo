@@ -3,9 +3,11 @@ import bannerImg from '../assets/images/banner.png'
 import logoImg from '../assets/images/logo.png'
 import {Button} from "../components/Button/Button";
 import {ButtonRegistrtion} from "../components/Registration-button/ButtonRegistrtion";
+import {useNavigation} from "@react-navigation/native";
 
 
 const WelcomeScreen = () => {
+    const navigation=useNavigation()
     return(
         <SafeAreaView style={styles.container}>
             <ImageBackground source={bannerImg} style={styles.bannerStyle} resizeMode='cover'>
@@ -21,9 +23,9 @@ const WelcomeScreen = () => {
 
             </View>
             <View style={[styles.bodyStyle,{marginTop: 32}]}>
-                <ButtonRegistrtion text='Continue with Apple' type='apple'/>
-                <ButtonRegistrtion text='Continue with Google' type='google'/>
-                <ButtonRegistrtion text='Continue with Twitter' type='twitter'/>
+                <ButtonRegistrtion text='Continue with Apple' type='apple' logIn={()=>navigation.navigate('Root')}/>
+                <ButtonRegistrtion text='Continue with Google' type='google' logIn={()=>navigation.navigate('Root')}/>
+                <ButtonRegistrtion text='Continue with Twitter' type='twitter' logIn={()=>navigation.navigate('Root')}/>
             </View>
             <Text style={styles.continueStyle}>Continue with Email</Text>
 
