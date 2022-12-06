@@ -83,8 +83,6 @@ function BottomTabNavigator() {
               source={homeIcon}
               color={color}
           />
-
-
         })}
       />
       <BottomTab.Screen

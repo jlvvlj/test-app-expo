@@ -12,8 +12,9 @@ export type ButtonType = 'apple' | 'google' | 'twitter';
 interface Props {
     text: string;
     type: ButtonType;
+    logIn:()=>(void);
 }
-export const ButtonRegistrtion: React.FC<Props> =  ({text,type}) => {
+export const ButtonRegistrtion: React.FC<Props> =  ({text,type,logIn}) => {
 
     const renderIcon = useMemo(() => {
        switch (type) {
@@ -40,7 +41,7 @@ export const ButtonRegistrtion: React.FC<Props> =  ({text,type}) => {
 
 
     return(
-        <TouchableOpacity style={styles.styleButton}>
+        <TouchableOpacity style={styles.styleButton} onPress={()=>logIn()}>
              <Image source={renderIcon} style={renderStyleIcon} resizeMode='contain'/>
              <Text style={styles.textStyle}   >{text}</Text>
         </TouchableOpacity>
