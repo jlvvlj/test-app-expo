@@ -30,7 +30,7 @@ const gameData = [
   {id: 5, title: 'Slingshot Crash', text: 'Pull Back and Smash!!', img: require('../assets/images/game5.png')},
 ]
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function TabHomeScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -47,8 +47,8 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
             horizontal
             showsHorizontalScrollIndicator={false}
         >
-          <Card mainImg={phone} text="Shine bright like a pro" title="Iphone 14 Pro Max" count="0" total="16.84" />
-          <Card isSecond mainImg={Green} text="Shine bright like a pro" title="Iphone 14 Pro Max" count="0" total="16.84" />
+          <Card mainImg={phone} text="Shine bright like a pro" title="Iphone 14 Pro Max" count="0" total="16.84" slider />
+          <Card isSecond mainImg={Green} text="Shine bright like a pro" title="Iphone 14 Pro Max" count="0" total="16.84" slider />
         </ScrollView>
         <ScrollView
             style={[styles.scrollViewHorizontal, styles.mt24]}
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     paddingHorizontal: 16,
+
   },
   backgroundContainer:{
     width: '100%',
