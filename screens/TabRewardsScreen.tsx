@@ -9,11 +9,12 @@ import Green from "../assets/images/Green.png";
 import Grubhub from "../assets/images/Grubhub.png";
 import amazon from "../assets/images/amazon.png";
 import fifa from "../assets/images/fifa.png";
+import {useNavigation} from "@react-navigation/native";
 
 
 
 export default function TabRewardsScreen() {
-
+const navigation=useNavigation()
   return (
     <SafeAreaView style={styles.container}>
       <View style={{marginHorizontal:16}}>
@@ -21,7 +22,7 @@ export default function TabRewardsScreen() {
          <Text style={styles.title}>
           Rewards
         </Text>
-        <Button text="Create Account »" />
+        <Button text="Create Account »"  onClick={()=>navigation.navigate('WelcomeScreen')} />
       </View>
       <SearchInput placeholder='Search brand, product, reward, etc'/>
           <View style={{marginTop:16}}>

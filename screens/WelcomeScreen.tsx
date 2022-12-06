@@ -1,7 +1,8 @@
-import {ImageBackground, StyleSheet, Text, SafeAreaView, Image, View, Dimensions} from "react-native";
+import {ImageBackground, StyleSheet, Text, SafeAreaView, Image, View, Dimensions, TouchableOpacity} from "react-native";
 import bannerImg from '../assets/images/banner.png'
 import logoImg from '../assets/images/logo.png'
-import {Button} from "../components/Button/Button";
+import CloseIcon from '../assets/images/close.svg'
+
 import {ButtonRegistrtion} from "../components/Registration-button/ButtonRegistrtion";
 import {useNavigation} from "@react-navigation/native";
 
@@ -11,6 +12,9 @@ const WelcomeScreen = () => {
     return(
         <SafeAreaView style={styles.container}>
             <ImageBackground source={bannerImg} style={styles.bannerStyle} resizeMode='cover'>
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
+                    <CloseIcon  style={styles.closeIcon}/>
+                </TouchableOpacity>
                 <Image source={logoImg} style={styles.logoStyle}/>
             </ImageBackground>
             <View style={styles.bodyStyle}>
@@ -20,15 +24,13 @@ const WelcomeScreen = () => {
                 <Text style={[styles.title,{color:'#310CE3'}]}>
                     repeat.
                 </Text>
-
             </View>
             <View style={[styles.bodyStyle,{marginTop: 32}]}>
-                <ButtonRegistrtion text='Continue with Apple' type='apple' logIn={()=>navigation.navigate('Root')}/>
-                <ButtonRegistrtion text='Continue with Google' type='google' logIn={()=>navigation.navigate('Root')}/>
-                <ButtonRegistrtion text='Continue with Twitter' type='twitter' logIn={()=>navigation.navigate('Root')}/>
+                <ButtonRegistrtion text='Continue with Apple' type='apple' logIn={()=>console.log()}/>
+                <ButtonRegistrtion text='Continue with Google' type='google' logIn={()=>console.log()}/>
+                <ButtonRegistrtion text='Continue with Twitter' type='twitter' logIn={()=>console.log()}/>
             </View>
             <Text style={styles.continueStyle}>Continue with Email</Text>
-
         </SafeAreaView>
     )
 }
@@ -61,5 +63,10 @@ const styles = StyleSheet.create({
         color:'continueStyle',
         marginTop:24,
         color:'#616691'
+    },
+    closeIcon:{
+       position:'absolute',
+      right:-10,
+        top:-20
     }
 });
