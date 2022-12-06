@@ -22,6 +22,7 @@ import homeIcon from '../assets/images/home-04.png';
 import rewardsIcon from '../assets/images/rewards.png';
 import globeIcon from '../assets/images/globe.png';
 import userCircleIcon from '../assets/images/user-circle.png';
+import WelcomeScreen from "../screens/WelcomeScreen";
 
 
 
@@ -44,7 +45,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
