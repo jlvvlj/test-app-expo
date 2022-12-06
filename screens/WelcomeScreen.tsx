@@ -6,9 +6,6 @@ import {ButtonRegistrtion} from "../components/Registration-button/ButtonRegistr
 
 
 const WelcomeScreen = () => {
-    const windowHeight = Dimensions.get('window').height;
-console.log(windowHeight)
-
     return(
         <SafeAreaView style={styles.container}>
             <ImageBackground source={bannerImg} style={styles.bannerStyle} resizeMode='cover'>
