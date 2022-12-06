@@ -17,7 +17,7 @@ export default function TabRewardsScreen() {
 const navigation=useNavigation()
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{marginHorizontal:16}}>
+      <View style={{marginHorizontal:16,margin:48}}>
       <View style={styles.header}>
          <Text style={styles.title}>
           Rewards
@@ -28,7 +28,7 @@ const navigation=useNavigation()
           <View style={{marginTop:16}}>
               <SpaceFiltersSort filter sort gallery/>
           </View>
-          <ScrollView  style={{marginTop:16,marginBottom:195}} showsVerticalScrollIndicator={false}>
+          <ScrollView  style={{marginTop:16,marginBottom:150}} showsVerticalScrollIndicator={false}>
               <View>
                   <Card mainImg={phone} text="Shine bright like a pro" title="Iphone 14 Pro Max" count="0" total="16.84" />
               </View>
@@ -53,13 +53,13 @@ const navigation=useNavigation()
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-      backgroundColor:'white'
+      backgroundColor:'white',
   },
   header:{
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    marginBottom:19
+    marginBottom:19,
   },
   title: {
     fontSize: 32,
