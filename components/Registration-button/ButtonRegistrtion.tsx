@@ -74,8 +74,7 @@ const styles = StyleSheet.create({
       height:24
     },
     iconTwitter:{
-        // width:24,
-        // height:19
+
     }
 
 })

@@ -14,8 +14,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import TabHomeScreen from '../screens/TabHomeScreen';
+import TabRewardsScreen from '../screens/TabRewardsScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import homeIcon from '../assets/images/home-04.png';
@@ -67,15 +67,15 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="TabHomeScreen"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
+        name="TabHomeScreen"
+        component={TabHomeScreen}
 
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+        options={({ navigation }: RootTabScreenProps<'TabHomeScreen'>) => ({
             title: 'Home',
             headerShown: false,
           tabBarIcon: ({ color }) =>
@@ -87,9 +87,11 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Rewards"
-        component={TabTwoScreen}
+        component={TabRewardsScreen}
         options={{
           title: 'Rewards',
+            headerShown: false,
+
             tabBarIcon: ({ color }) =>
                 <Image
                 source={rewardsIcon}
@@ -99,7 +101,7 @@ function BottomTabNavigator() {
       />
         <BottomTab.Screen
             name="Games"
-            component={TabTwoScreen}
+            component={TabRewardsScreen}
             options={{
                 title: 'Games',
                 tabBarIcon: ({ color }) =>
@@ -111,7 +113,7 @@ function BottomTabNavigator() {
         />
         <BottomTab.Screen
             name="myVerse"
-            component={TabTwoScreen}
+            component={TabRewardsScreen}
             options={{
                 title: 'myVerse',
                 tabBarIcon: ({ color }) =>

@@ -11,11 +11,12 @@ interface Props {
     count: string;
     total: string
     isSecond?: boolean;
+    slider:boolean
 }
 
-export const Card: React.FC<Props> = React.memo(({ mainImg, title, text, total, count, isSecond }) => {
+export const Card: React.FC<Props> = React.memo(({ mainImg, title, text, total, count, isSecond, slider }) => {
     return (
-        <View style={isSecond ? [styles.main, styles.mainSecond] : styles.main}>
+        <View style={isSecond ? [styles.main(slider), styles.mainSecond] : styles.main(slider)}>
             <Image source={mainImg} style={styles.phoneImage}/>
             <View style={styles.contentText}>
                 <View>
@@ -43,10 +44,17 @@ export const Card: React.FC<Props> = React.memo(({ mainImg, title, text, total, 
 })
 
 const styles = StyleSheet.create({
-    main: {
-        borderRadius: 20,
-        width: 315,
-    },
+    main:(slider:boolean):boolean => ({
+        width: slider ? 315 : '100%',
+        borderRadius:24,
+        shadowColor: "rgba(0, 0, 0, 0.08)",
+        shadowOffset: {
+            width: 1,
+            height: 1,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 5.65,
+    }),
     mainSecond: {
       marginLeft: 15,
     },
@@ -60,7 +68,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
         alignItems: 'center',
-        padding: 16
+        padding: 16,
+        borderRadius:20
     },
     title: {fontWeight: 'bold', fontSize: 18, marginBottom: 5},
     largeText: {fontSize: 18},
