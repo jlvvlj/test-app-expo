@@ -72,7 +72,7 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="TabHomeScreen"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: Colors.dark.tint,
       }}>
       <BottomTab.Screen
         name="TabHomeScreen"
