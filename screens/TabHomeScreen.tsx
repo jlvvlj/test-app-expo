@@ -30,7 +30,7 @@ const gameData = [
   {id: 5, title: 'Slingshot Crash', text: 'Pull Back and Smash!!', img: require('../assets/images/game5.png')},
 ]
 
-export default function TabHomeScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function TabHomeScreen({ navigation }: RootTabScreenProps<'TabHomeScreen'>) {
   return (
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>

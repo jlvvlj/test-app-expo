@@ -10,11 +10,11 @@ import Grubhub from "../assets/images/Grubhub.png";
 import amazon from "../assets/images/amazon.png";
 import fifa from "../assets/images/fifa.png";
 import {useNavigation} from "@react-navigation/native";
+import {RootTabScreenProps} from "../types";
 
 
+export default function TabRewardsScreen({ navigation }: RootTabScreenProps<'TabRewardsScreen'>) {
 
-export default function TabRewardsScreen() {
-const navigation=useNavigation()
   return (
     <SafeAreaView style={styles.container}>
       <View style={{marginHorizontal:16,margin:48}}>
@@ -26,7 +26,11 @@ const navigation=useNavigation()
       </View>
       <SearchInput placeholder='Search brand, product, reward, etc'/>
           <View style={{marginTop:16}}>
-              <SpaceFiltersSort filter sort gallery/>
+              <SpaceFiltersSort
+                  filterName='All Categories'
+                  sortName='Relevance'
+                  listName='Gallery View'
+              />
           </View>
           <ScrollView  style={{marginTop:16,marginBottom:150}} showsVerticalScrollIndicator={false}>
               <View>

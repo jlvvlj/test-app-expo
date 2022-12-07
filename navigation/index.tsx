@@ -16,6 +16,8 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabHomeScreen from '../screens/TabHomeScreen';
 import TabRewardsScreen from '../screens/TabRewardsScreen';
+import TabGamesScreen from '../screens/TabGamesScreen';
+
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import homeIcon from '../assets/images/home-04.png';
@@ -89,7 +91,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Rewards"
         component={TabRewardsScreen}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'TabRewardsScreen'>) =>({
           title: 'Rewards',
             headerShown: false,
 
@@ -98,19 +100,21 @@ function BottomTabNavigator() {
                 source={rewardsIcon}
                 color={color}
             />
-        }}
+        })}
       />
         <BottomTab.Screen
             name="Games"
-            component={TabRewardsScreen}
-            options={{
+            component={TabGamesScreen}
+            options={({ navigation }: RootTabScreenProps<'TabGamesScreen'>) =>({
                 title: 'Games',
+                headerShown: false,
+
                 tabBarIcon: ({ color }) =>
                     <Image
                     source={globeIcon}
                     color={color}
                 />
-        }}
+        })}
         />
         <BottomTab.Screen
             name="myVerse"
