@@ -2,17 +2,19 @@ import {Image, StyleSheet, TouchableOpacity, View,Text} from "react-native";
 import filterIcon from  '../../assets/images/filter.png'
 import galleryIcon from  '../../assets/images/landscape.png'
 import sortIcon from  '../../assets/images/arrow-sort.png'
+import ListIcon from  '../../assets/images/list.svg'
+
 import React from "react";
 
 
 
 interface Props {
-    filter:boolean,
-    sort:boolean,
-    gallery:boolean
+    filterName?:string,
+    sortName?:string,
+    listName?:string
 
 }
-export const SpaceFiltersSort: React.FC<Props> = ({filter,sort,gallery}) => {
+export const SpaceFiltersSort: React.FC<Props> = ({filterName,sortName,listName}) => {
     const renderFilter = () => {
             return (
                 <TouchableOpacity>
@@ -20,13 +22,12 @@ export const SpaceFiltersSort: React.FC<Props> = ({filter,sort,gallery}) => {
                         <>
                         <Image source={filterIcon}/>
                         <Text style={styles.text}>
-                            All Categories
+                            {filterName}
                         </Text>
                         </>
                     </View>
                 </TouchableOpacity>
             )
-
     }
     const renderSort = () => {
             return (
@@ -35,36 +36,34 @@ export const SpaceFiltersSort: React.FC<Props> = ({filter,sort,gallery}) => {
                         <>
                         <Image source={sortIcon}/>
                         <Text style={styles.text}>
-                            Relevance
+                            {sortName}
                         </Text>
                         </>
                     </View>
                 </TouchableOpacity>
             )
-
-
     }
     const renderGallery = () => {
             return (
                 <TouchableOpacity>
                     <View style={styles.element}>
                         <>
-                        <Image source={galleryIcon}/>
+                            {listName === 'List View'?<ListIcon/>:<Image source={galleryIcon}/>}
                         <Text style={styles.text}>
-                            Gallery View
+                            {listName}
                         </Text>
                         </>
                     </View>
                 </TouchableOpacity>
             )
-
    }
 
+
     return(
-        <View style={styles.container(filter && gallery && sort)}>
-            {filter?renderFilter():null}
-            {gallery?renderGallery():null}
-            {sort?renderSort():null}
+        <View style={styles.container(filterName && listName && sortName)}>
+            {filterName?renderFilter():null}
+            {listName?renderGallery():null}
+            {sortName?renderSort():null}
         </View>
     )
 }
@@ -94,6 +93,7 @@ const styles = StyleSheet.create({
     },
     text:{
         color:'#616691',
+        marginLeft:4
 
     }
 
