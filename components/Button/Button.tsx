@@ -10,7 +10,7 @@ export type ButtonType = 'default' | 'get' | 'apple' | 'primary' | 'play';
 interface Props {
     text: string;
     type?: ButtonType;
-    onClick:()=>(void);
+    onClick:()=>void;
 }
 
 export const Button: React.FC<Props> = React.memo(({ text, type = 'default',onClick }) => {
