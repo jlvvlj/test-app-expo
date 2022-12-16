@@ -101,7 +101,7 @@ function BottomTabNavigator() {
         component={TabHomeScreen}
         options={({ navigation }: RootTabScreenProps<"TabHomeScreen">) => ({
           title: "Home",
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color }) => <Image source={homeIcon} />,
         })}
       />
@@ -110,7 +110,7 @@ function BottomTabNavigator() {
         component={TabRewardsScreen}
         options={({ navigation }: RootTabScreenProps<"TabRewardsScreen">) => ({
           title: "Rewards",
-          headerShown: false,
+          headerShown: true,
 
           tabBarIcon: ({ color }) => <Image source={rewardsIcon} />,
         })}
@@ -120,7 +120,7 @@ function BottomTabNavigator() {
         component={TabGamesScreen}
         options={({ navigation }: RootTabScreenProps<"TabGamesScreen">) => ({
           title: "Games",
-          headerShown: false,
+          headerShown: true,
 
           tabBarIcon: ({ color }) => <Image source={globeIcon} />,
         })}
