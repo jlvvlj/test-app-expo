@@ -203,24 +203,6 @@ export default function TabHomeScreen({
   const goToNextStep = () => setStep(prev => prev + 1);
   return (
     <SafeAreaView style={styles.container}>
-      {/* {step == 1 && (
-        <WhatYouLike
-          data={brandData}
-          title="Brands you like"
-          type="Brand"
-          pageNumber={1}
-          nextStepHandler={goToNextStep}
-        />
-      )}
-      {step == 2 && (
-        <WhatYouLike
-          data={categoriesData}
-          title="Categories you like"
-          type="Categories"
-          pageNumber={2}
-          nextStepHandler={goToNextStep}
-        />
-      )} */}
       <ScrollView showsVerticalScrollIndicator={false}>
         {step == 0 && (
           <WelcomeModal
