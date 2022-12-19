@@ -23,6 +23,8 @@ export type RootStackParamList = {
   WelcomeScreen: undefined;
   TabGamesScreen: undefined;
   TabRewardsScreen: undefined;
+  BrandsYouLike: undefined;
+  CategoriesYouLike: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

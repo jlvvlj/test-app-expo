@@ -9,6 +9,8 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
+  TabRouter,
+  useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
@@ -33,6 +35,97 @@ import homeIcon from "../assets/images/home-04.png";
 import rewardsIcon from "../assets/images/rewards.png";
 import globeIcon from "../assets/images/globe.png";
 import userCircleIcon from "../assets/images/user-circle.png";
+import WhatYouLike from "../screens/WhatYouLike";
+
+const brandData = [
+  { id: 1, img: require("../assets/images/Brand_1.png"), selected: false },
+  { id: 2, img: require("../assets/images/Brand_2.png"), selected: false },
+  { id: 3, img: require("../assets/images/Brand_3.png"), selected: false },
+  { id: 4, img: require("../assets/images/Brand_4.png"), selected: false },
+  { id: 5, img: require("../assets/images/Brand_5.png"), selected: false },
+  { id: 6, img: require("../assets/images/Brand_6.png"), selected: false },
+  { id: 7, img: require("../assets/images/Brand_7.png"), selected: false },
+  { id: 8, img: require("../assets/images/Brand_8.png"), selected: false },
+  { id: 9, img: require("../assets/images/Brand_9.png"), selected: false },
+  { id: 10, img: require("../assets/images/Brand_10.png"), selected: false },
+  { id: 11, img: require("../assets/images/Brand_11.png"), selected: false },
+  { id: 12, img: require("../assets/images/Brand_12.png"), selected: false },
+];
+
+const categoriesData = [
+  {
+    id: 1,
+    img: require("../assets/images/categories_1.png"),
+    text: "Fashion",
+    selected: false,
+  },
+  {
+    id: 2,
+    img: require("../assets/images/categories_2.png"),
+    text: "Electronics",
+    selected: false,
+  },
+  {
+    id: 3,
+    img: require("../assets/images/categories_3.png"),
+    text: "Traveling",
+    selected: false,
+  },
+  {
+    id: 4,
+    img: require("../assets/images/categories_4.png"),
+    text: "Movies",
+    selected: false,
+  },
+  {
+    id: 5,
+    img: require("../assets/images/categories_5.png"),
+    text: "Personal Care",
+    selected: false,
+  },
+  {
+    id: 6,
+    img: require("../assets/images/categories_6.png"),
+    text: "Camping",
+    selected: false,
+  },
+  {
+    id: 7,
+    img: require("../assets/images/categories_7.png"),
+    text: "DIY",
+    selected: false,
+  },
+  {
+    id: 8,
+    img: require("../assets/images/categories_8.png"),
+    text: "Parties",
+    selected: false,
+  },
+  {
+    id: 9,
+    img: require("../assets/images/categories_11.png"),
+    text: "Shopping",
+    selected: false,
+  },
+  {
+    id: 10,
+    img: require("../assets/images/categories_12.png"),
+    text: "Gardening",
+    selected: false,
+  },
+  {
+    id: 11,
+    img: require("../assets/images/categories_9.png"),
+    text: "Music",
+    selected: false,
+  },
+  {
+    id: 12,
+    img: require("../assets/images/categories_10.png"),
+    text: "Baby & Kids",
+    selected: false,
+  },
+];
 
 export default function Navigation({
   colorScheme,
@@ -56,6 +149,7 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const navigation = useNavigation();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -76,6 +170,30 @@ function RootNavigator() {
         component={WelcomeScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="BrandsYouLike"
+        component={WhatYouLike}
+        options={{ headerShown: false }}
+        initialParams={{
+          title: "Brands you like",
+          data: brandData,
+          type: "Brand",
+          pageNumber: 1,
+          nextStepHandler: () => navigation.navigate("CategoriesYouLike"),
+        }}
+      />
+      <Stack.Screen
+        name="CategoriesYouLike"
+        component={WhatYouLike}
+        options={{ headerShown: false }}
+        initialParams={{
+          title: "Categories you like",
+          data: categoriesData,
+          type: "Categories",
+          pageNumber: 2,
+          nextStepHandler: () => navigation.navigate("TabHomeScreen"),
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -95,13 +213,17 @@ function BottomTabNavigator() {
       screenOptions={{
         tabBarActiveTintColor: Colors.dark.tint,
       }}
+      // screenOptions={({ route }) => {
+      //   console.log(route.name);
+      // }}
     >
       <BottomTab.Screen
         name="TabHomeScreen"
         component={TabHomeScreen}
         options={({ navigation }: RootTabScreenProps<"TabHomeScreen">) => ({
           title: "Home",
-          headerShown: true,
+          headerShown: false,
+
           tabBarIcon: ({ color }) => <Image source={homeIcon} />,
         })}
       />
@@ -110,7 +232,7 @@ function BottomTabNavigator() {
         component={TabRewardsScreen}
         options={({ navigation }: RootTabScreenProps<"TabRewardsScreen">) => ({
           title: "Rewards",
-          headerShown: true,
+          headerShown: false,
 
           tabBarIcon: ({ color }) => <Image source={rewardsIcon} />,
         })}
@@ -120,7 +242,7 @@ function BottomTabNavigator() {
         component={TabGamesScreen}
         options={({ navigation }: RootTabScreenProps<"TabGamesScreen">) => ({
           title: "Games",
-          headerShown: true,
+          headerShown: false,
 
           tabBarIcon: ({ color }) => <Image source={globeIcon} />,
         })}

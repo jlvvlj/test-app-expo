@@ -11,12 +11,17 @@ import selectedIcon from "../assets/images/selected.png";
 import { Button } from "../components/Button/Button";
 
 interface propsType {
-  title: string;
-  type: string;
-  pageNumber: number;
-  isText?: boolean;
-  data: dataType[];
-  nextStepHandler: Function;
+  route: {
+    params: {
+      title: string;
+      type: string;
+      pageNumber: number;
+      isText?: boolean;
+      data: dataType[];
+      nextStepHandler: Function;
+      next: Function;
+    };
+  };
 }
 interface dataType {
   id: number;
@@ -24,14 +29,8 @@ interface dataType {
   img: any;
   text?: string;
 }
-const WhatYouLike = ({
-  title,
-  data,
-  type,
-  pageNumber,
-  nextStepHandler,
-}: propsType) => {
-  const [departmentData, setDepartmentData] = useState(data);
+const WhatYouLike = ({ route }: propsType) => {
+  const [departmentData, setDepartmentData] = useState(route.params.data);
 
   const selectedAount = departmentData.filter(
     (department: dataType) => department.selected == true
@@ -52,41 +51,56 @@ const WhatYouLike = ({
     <SafeAreaView style={styles.departmentPage}>
       <View style={styles.pageHeader}>
         <View style={styles.pageHeaderTitle}>
-          <Text style={styles.pageTitle}>{title}</Text>
-          <Text style={styles.pageAmount}>({pageNumber}/2)</Text>
+          <Text style={styles.pageTitle}>{route.params.title}</Text>
+          <Text style={styles.pageAmount}>({route.params.pageNumber}/2)</Text>
         </View>
-        <Text style={styles.skipButton} onPress={() => nextStepHandler()}>
+        <Text
+          style={styles.skipButton}
+          onPress={() => {
+            route.params.nextStepHandler();
+            if (route.params.type == "Brand") {
+              route.params.next();
+            }
+          }}
+        >
           Skip
         </Text>
       </View>
-      <ScrollView contentContainerStyle={styles.list}>
-        {departmentData.map((department: dataType) => (
-          <View
-            key={department.id}
-            style={
-              department.selected
-                ? [styles.option, styles.selected]
-                : styles.option
-            }
-            onTouchEnd={() => selectedHandler(department.id)}
-          >
-            <Image source={department.img} />
-            {department.text && <Text>{department.text}</Text>}
-            {department.selected && (
-              <Image source={selectedIcon} style={styles.selectedIcon} />
-            )}
-          </View>
-        ))}
-      </ScrollView>
+      <View style={styles.listBlock}>
+        <ScrollView contentContainerStyle={styles.list}>
+          {departmentData.map((department: dataType) => (
+            <View
+              key={department.id}
+              style={
+                department.selected
+                  ? [styles.option, styles.selected]
+                  : styles.option
+              }
+              onTouchEnd={() => selectedHandler(department.id)}
+            >
+              <Image source={department.img} />
+              {department.text && <Text>{department.text}</Text>}
+              {department.selected && (
+                <Image source={selectedIcon} style={styles.selectedIcon} />
+              )}
+            </View>
+          ))}
+        </ScrollView>
+      </View>
       <View style={styles.selectedBlock}>
         <View>
-          <Text style={styles.selectedTitle}>{type}</Text>
+          <Text style={styles.selectedTitle}>{route.params.type}</Text>
           <Text style={styles.amountSelected}>{selectedAount} selected</Text>
         </View>
         <Button
           type="play"
           text="Next"
-          onClick={() => nextStepHandler()}
+          onClick={() => {
+            route.params.nextStepHandler();
+            if (route.params.type == "Brand") {
+              route.params.next();
+            }
+          }}
         ></Button>
       </View>
     </SafeAreaView>
@@ -96,15 +110,19 @@ const WhatYouLike = ({
 const styles = StyleSheet.create({
   departmentPage: {
     width: "100%",
+    height: "100%",
     backgroundColor: "#E5E5E5",
+  },
+  listBlock: {
+    height: "85%",
   },
   list: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     width: "100%",
+    height: "auto",
     justifyContent: "space-around",
-    height: "150%",
   },
   option: {
     display: "flex",
@@ -114,8 +132,8 @@ const styles = StyleSheet.create({
     height: 150,
     backgroundColor: "#FFFFFF",
     borderRadius: 24,
-    marginTop: "1.5%",
     marginBottom: "1.5%",
+    marginTop: "1.5%",
     opacity: 0.5,
   },
   selected: {
@@ -135,7 +153,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: "30%",
     paddingRight: "10%",
-    marginTop: 50,
   },
   pageHeaderTitle: {
     display: "flex",
@@ -167,6 +184,9 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     marginBottom: 20,
+    position: "absolute",
+    bottom: 20,
+    left: 10,
   },
   selectedTitle: {
     fontSize: 22,

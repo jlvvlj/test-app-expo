@@ -2,8 +2,10 @@ import React from "react";
 import { Image, StyleSheet, Text, View, Modal } from "react-native";
 import { Button } from "./Button/Button";
 import LogoModal from "../assets/images/Vector.png";
+import { useNavigation } from "@react-navigation/native";
 
 const WelcomeModal = ({ goToNextStep }: any) => {
+  const navigation = useNavigation();
   return (
     <Modal visible={true} transparent={true}>
       <View style={styles.backdrop}></View>
@@ -19,7 +21,12 @@ const WelcomeModal = ({ goToNextStep }: any) => {
         <Button
           text="Get Started  »"
           type="play"
-          onClick={() => goToNextStep()}
+          onClick={() => {
+            navigation.navigate("BrandsYouLike", {
+              next: goToNextStep,
+            });
+            goToNextStep();
+          }}
         />
       </View>
     </Modal>

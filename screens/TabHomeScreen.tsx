@@ -26,7 +26,7 @@ import { Game } from "../components/Game/Game";
 // @ts-ignore
 import imageBackground from "../assets/images/imageBackground.png";
 import lockIcon from "../assets/images/lock-dark.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WheelModal from "../components/WheelModal";
 import CongratulationsModal from "../components/CongratulationsModal";
 import WelcomeModal from "../components/WelcomeModal";
@@ -198,10 +198,12 @@ export default function TabHomeScreen({
 }: RootTabScreenProps<"TabHomeScreen">) {
   const [step, setStep] = useState(0);
 
-  const goToNextStep = () => setStep(step + 1);
+  console.log(step);
+
+  const goToNextStep = () => setStep(prev => prev + 1);
   return (
     <SafeAreaView style={styles.container}>
-      {step == 1 && (
+      {/* {step == 1 && (
         <WhatYouLike
           data={brandData}
           title="Brands you like"
@@ -218,107 +220,108 @@ export default function TabHomeScreen({
           pageNumber={2}
           nextStepHandler={goToNextStep}
         />
-      )}
-      {(step === 0 || step >= 2) && (
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {step == 0 && <WelcomeModal goToNextStep={() => goToNextStep()} />}
-          {step == 3 && <WheelModal goToNextStep={() => goToNextStep()} />}
-          {step == 4 && (
-            <CongratulationsModal goToNextStep={() => goToNextStep()} />
-          )}
-          <View style={[styles.headerContainer, styles.topContainer]}>
-            <Image source={Logo} />
-            <Button
-              text="Create Account »"
-              onClick={() => navigation.navigate("WelcomeScreen")}
-            />
-          </View>
-          <View style={styles.headerContainer}>
-            <Text style={styles.headText}>Hot Rewards</Text>
-            <Text style={styles.seeAll}>See All »</Text>
-          </View>
-          <ScrollView
-            style={styles.scrollViewHorizontal}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          >
-            <Card
-              mainImg={phone}
-              text="Shine bright like a pro"
-              title="Iphone 14 Pro Max"
-              count="0"
-              total="16.84"
-              slider
-            />
-            <Card
-              isSecond
-              mainImg={Green}
-              text="Shine bright like a pro"
-              title="Iphone 14 Pro Max"
-              count="0"
-              total="16.84"
-              slider
-            />
-          </ScrollView>
-          <ScrollView
-            style={[styles.scrollViewHorizontal, styles.mt24]}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          >
-            <CardBottom
-              mainImg={colorful}
-              title="Instant win here"
-              text="Spin and get rewards worth up to 500$"
-            />
-            <CardBottom
-              mainImg={colorful}
-              isSecond
-              title="Instant win here"
-              text="Spin and get rewards worth up to 500$"
-            />
-          </ScrollView>
-          <View style={styles.headerContainer}>
-            <Text style={styles.headText}>Top Games</Text>
-            <Text style={styles.seeAll}>See All »</Text>
-          </View>
-          <View style={styles.gameWrapper}>
-            <View style={styles.gameContent}>
-              {gameData.map(item => (
-                <Game
-                  key={item.id}
-                  id={item.id}
-                  isLastChild={item.id === gameData.length}
-                  img={item.img}
-                  title={item.title}
-                  text={item.text}
-                />
-              ))}
-            </View>
-          </View>
-          <ImageBackground
-            source={imageBackground}
-            style={styles.backgroundContainer}
-          >
-            <View style={styles.backgroundContent}>
-              <View
-                style={{
-                  flexDirection: "column",
-                  backgroundColor: "transparent",
-                }}
-              >
-                <Text style={styles.buttonText}>Get 5 EMBR</Text>
-                <Text style={[styles.buttonText, { fontSize: 14 }]}>
-                  Invite a friend
-                </Text>
-              </View>
-              <TouchableOpacity style={styles.buttonInvite}>
-                <Image source={lockIcon} />
-                <Text style={styles.buttonInviteText}>Invite</Text>
-              </TouchableOpacity>
-            </View>
-          </ImageBackground>
+      )} */}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {step == 0 && (
+          <WelcomeModal
+            goToNextStep={() => goToNextStep()}
+            brandData={brandData}
+          />
+        )}
+        {step == 2 && <WheelModal goToNextStep={goToNextStep} />}
+        {step == 3 && <CongratulationsModal goToNextStep={goToNextStep} />}
+        <View style={[styles.headerContainer, styles.topContainer]}>
+          <Image source={Logo} />
+          <Button
+            text="Create Account »"
+            onClick={() => navigation.navigate("WelcomeScreen")}
+          />
+        </View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headText}>Hot Rewards</Text>
+          <Text style={styles.seeAll}>See All »</Text>
+        </View>
+        <ScrollView
+          style={styles.scrollViewHorizontal}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          <Card
+            mainImg={phone}
+            text="Shine bright like a pro"
+            title="Iphone 14 Pro Max"
+            count="0"
+            total="16.84"
+            slider
+          />
+          <Card
+            isSecond
+            mainImg={Green}
+            text="Shine bright like a pro"
+            title="Iphone 14 Pro Max"
+            count="0"
+            total="16.84"
+            slider
+          />
         </ScrollView>
-      )}
+        <ScrollView
+          style={[styles.scrollViewHorizontal, styles.mt24]}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          <CardBottom
+            mainImg={colorful}
+            title="Instant win here"
+            text="Spin and get rewards worth up to 500$"
+          />
+          <CardBottom
+            mainImg={colorful}
+            isSecond
+            title="Instant win here"
+            text="Spin and get rewards worth up to 500$"
+          />
+        </ScrollView>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headText}>Top Games</Text>
+          <Text style={styles.seeAll}>See All »</Text>
+        </View>
+        <View style={styles.gameWrapper}>
+          <View style={styles.gameContent}>
+            {gameData.map(item => (
+              <Game
+                key={item.id}
+                id={item.id}
+                isLastChild={item.id === gameData.length}
+                img={item.img}
+                title={item.title}
+                text={item.text}
+              />
+            ))}
+          </View>
+        </View>
+        <ImageBackground
+          source={imageBackground}
+          style={styles.backgroundContainer}
+        >
+          <View style={styles.backgroundContent}>
+            <View
+              style={{
+                flexDirection: "column",
+                backgroundColor: "transparent",
+              }}
+            >
+              <Text style={styles.buttonText}>Get 5 EMBR</Text>
+              <Text style={[styles.buttonText, { fontSize: 14 }]}>
+                Invite a friend
+              </Text>
+            </View>
+            <TouchableOpacity style={styles.buttonInvite}>
+              <Image source={lockIcon} />
+              <Text style={styles.buttonInviteText}>Invite</Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      </ScrollView>
     </SafeAreaView>
   );
 }
