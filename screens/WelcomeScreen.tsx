@@ -50,7 +50,12 @@ const WelcomeScreen = () => {
           logIn={() => console.log()}
         />
       </View>
-      <Text style={styles.continueStyle}>Continue with Email</Text>
+      <Text
+        style={styles.continueStyle}
+        onPress={() => navigation.navigate("Registration")}
+      >
+        Continue with Email
+      </Text>
     </SafeAreaView>
   );
 };

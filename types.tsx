@@ -25,6 +25,10 @@ export type RootStackParamList = {
   TabRewardsScreen: undefined;
   BrandsYouLike: undefined;
   CategoriesYouLike: undefined;
+  Registration: undefined;
+  FaceIDScreen: undefined;
+  Login: undefined;
+  ForgotPasswordScreen: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

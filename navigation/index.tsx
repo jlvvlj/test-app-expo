@@ -36,6 +36,10 @@ import rewardsIcon from "../assets/images/rewards.png";
 import globeIcon from "../assets/images/globe.png";
 import userCircleIcon from "../assets/images/user-circle.png";
 import WhatYouLike from "../screens/WhatYouLike";
+import RegistrationScreen from "../screens/RegistrationScreen";
+import FaceIDSceen from "../screens/FaceIDSceen";
+import LoginScreen from "../screens/LogIn";
+import ForgotPasswordScreen from "../screens/ForgotPassword";
 
 const brandData = [
   { id: 1, img: require("../assets/images/Brand_1.png"), selected: false },
@@ -193,6 +197,26 @@ function RootNavigator() {
           pageNumber: 2,
           nextStepHandler: () => navigation.navigate("TabHomeScreen"),
         }}
+      />
+      <Stack.Screen
+        name="Registration"
+        component={RegistrationScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FaceIDScreen"
+        component={FaceIDSceen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ForgotPasswordScreen"
+        component={ForgotPasswordScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
