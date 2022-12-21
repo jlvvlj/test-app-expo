@@ -3,6 +3,8 @@ import { Image, StyleSheet, Text, View, Modal } from "react-native";
 import { Button } from "./Button/Button";
 import Gift from "../assets/images/gift.png";
 import FortuneWheel from "../assets/images/Congratulations.png";
+import youwon from "../assets/images/youwon.png";
+
 
 const CongratulationsModal = ({ goToNextStep }: any) => {
   return (
@@ -12,20 +14,10 @@ const CongratulationsModal = ({ goToNextStep }: any) => {
         <Image source={Gift} />
       </View>
       <View style={styles.modalContent}>
-        <Text style={styles.modalTitle}>Congratulations!</Text>
-        <Text style={styles.modalText}>
-          You won{" "}
-          <View style={styles.specialText}>
-            <Text style={styles.boldText}>Sticker </Text>
-            <Text style={styles.smallText}>215</Text>
-          </View>{" "}
-          ! You can find it in <Text style={styles.boldText}>myVerse</Text>{" "}
-          section.
-        </Text>
-        <Image source={FortuneWheel} style={styles.modalImage} />
-        <Text style={styles.subtext}>
-          Spookies is a ghost-themed NFT project that passed over to the OpenSea
-          realm in July.
+        <Text style={styles.modalTitle}>You just won!</Text>
+         <Image source={youwon} style={styles.modalImage} />
+         <Text style={styles.modalText}>
+        Congrats! You can spend EMBER on getting REWARDS like your favorite gift cards!{" "}
         </Text>
         <Button
           text="Start Using PlayEmber  »"
@@ -58,19 +50,22 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontStyle: "normal",
     fontWeight: "700",
-    fontSize: 22,
+    fontSize: 31,
     lineHeight: 27,
     textAlign: "center",
     letterSpacing: -0.3,
     color: "#170A4B",
     width: 200,
+    marginBottom: 20,
+    marginTop: 10
   },
   modalText: {
     fontStyle: "normal",
     fontWeight: "400",
-    fontSize: 16,
+    fontSize: 20,
     textAlign: "center",
-    marginTop: 16,
+    marginTop: 20,
+    marginBottom: 30,
     width: 260,
   },
   modalLogo: {
@@ -104,7 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   modalImage: {
-    marginTop: -25,
+    marginTop: 26,
   },
   subtext: {
     color: "#616691",

@@ -15,8 +15,7 @@ const WelcomeModal = ({ goToNextStep }: any) => {
       <View style={styles.modalContent}>
         <Text style={styles.modalTitle}>Welcome to Play Ember!</Text>
         <Text style={styles.modalText}>
-          Spookies is a ghost-themed NFT project that passed over to the OpenSea
-          realm in July.
+          Get cool rewards for playing games, let's choose together what types of rewards you like and get you going!
         </Text>
         <Button
           text="Get Started  »"
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     width: "90%",
     borderRadius: 24,
     position: "absolute",
-    top: "30%",
+    top: "31%",
     left: "5%",
   },
   modalTitle: {
@@ -59,12 +58,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     letterSpacing: -0.3,
     color: "#170A4B",
-    marginTop: 24,
+    marginTop: 32,
     marginBottom: 16,
   },
   modalText: {
     fontStyle: "normal",
-    fontWeight: "400",
+    fontWeight: "600",
     fontSize: 16,
     textAlign: "center",
     color: "#170A4B",

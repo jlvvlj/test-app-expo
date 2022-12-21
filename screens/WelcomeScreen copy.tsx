@@ -58,13 +58,8 @@ const WelcomeScreen = ({ goToNextStep }: any) => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles2.container}>
-   
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={CloseIcon} style={styles2.closeIcon} />
-        </TouchableOpacity>
-       
-      <View  style={[styles2.bodyStyle, { marginTop: 80 }]}>
-        <Image  source={logoImg} style={styles2.logoStyle} />
+      <View style={[styles2.bodyStyle, { marginTop: 80 }]}>
+        <Image source={logoImg} style={styles2.logoStyle} />
       </View>
 
       <View style={styles2.bodyStyle}>
@@ -94,14 +89,20 @@ const WelcomeScreen = ({ goToNextStep }: any) => {
         />
 
         <Button
-          text=" Continue with Email"
+          text="Start as a guest"
           type="play"
           onClick={() => {
-            navigation.navigate("Registration")
+            navigation.navigate("BrandsYouLike")
             
           }}
         />
       </View>
+      <Text
+        style={styles2.continueStyle}
+        onPress={() => navigation.navigate("Registration")}
+      >
+        Continue with Email
+      </Text>
     </SafeAreaView>
 
   );
